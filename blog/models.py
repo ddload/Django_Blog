@@ -1,4 +1,8 @@
+# Django Imports
 from django.db import models
+
+# Python Imports
+import datetime
 
 class Entry(models.Model):
     """
@@ -12,15 +16,12 @@ class Entry(models.Model):
     modified = models.DateTimeField(editable=False)
 
     def save(self, force_insert=False, force_update=False):
-        if not seld.id:
+        if not self.id:
             self.created = datetime.datetime.now()
             self.modified = datetime.datetime.now()
             super(Entry, self).save(force_insert, force_update)
 
     def is_published(self):
-        """
-        Returns the entries published status
-        """
         if self.published:
             return True
         else:
