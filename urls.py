@@ -5,5 +5,5 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
-    (r'^blog/', include(Django_Blog.blog.urls)),
+    (r'^blog/', include('Django_Blog.blog.urls')),
 )

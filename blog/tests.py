@@ -5,12 +5,21 @@ when you run "manage.py test".
 Replace this with more appropriate tests for your application.
 """
 
-from django.test import TestCase
+from django.utils import unittest
+from django.test.client import Client
 
+class SimpleLoadURLTest(unittest.TestCase):
+    def setUp(self):
+        """
+        Every test needs a client
+        """
+        self.client = Client()
 
-class SimpleTest(TestCase):
-    def test_basic_addition(self):
-        """
-        Tests that 1 + 1 always equals 2.
-        """
-        self.assertEqual(1 + 1, 2)
+    def test_blog_index(self):
+        # Issue a GET request
+        response = self.client.get('/blog/')
+
+        # Check that the response id 200 OK.
+        self.assertEqual(response.status_code, 200)        
+
+        
