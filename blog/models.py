@@ -15,11 +15,11 @@ class Entry(models.Model):
     created = models.DateTimeField(editable=False)
     modified = models.DateTimeField(editable=False)
 
-    def save(self, force_insert=False, force_update=False):
+    def save(self, *args, **kwargs):
         if not self.id:
             self.created = datetime.datetime.now()
             self.modified = datetime.datetime.now()
-            super(Entry, self).save(force_insert, force_update)
+            super(Entry, self).save(*args, **kwargs)
 
     def is_published(self):
         if self.published:
