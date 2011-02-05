@@ -7,6 +7,8 @@ Replace this with more appropriate tests for your application.
 
 from django.test.client import Client
 from django.test import TestCase
+from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 
 from Django_Blog.blog.models import Entry
 
@@ -22,6 +24,7 @@ class SimpleLoadURLTest(TestCase):
                                       data='EntryData',
                                       published=True
                                      )
+        self.user = User.objects.create_user('john', 'lennon@thebeatles.com', 'johnpassword')
         
     def test_GET_blog_index(self):
         # Issue a GET request
@@ -31,6 +34,9 @@ class SimpleLoadURLTest(TestCase):
         self.assertEqual(response.status_code, 200)        
 
     def test_GET_blog_add(self):
+        # Login
+        self.client.login(username='john', password='johnpassword')
+
         # Issue a GET request
         response = self.client.get('/blog/add/')
 
@@ -38,6 +44,9 @@ class SimpleLoadURLTest(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_POST_blog_add(self):
+        # Login
+        self.client.login(username='john', password='johnpassword')
+
         # Issue a POST request
         response = self.client.post('/blog/add/',{
                                                   'name': 'EntryName',
