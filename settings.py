@@ -121,6 +121,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'Django_Blog.blog',
+    'registration',
 )
 
 # A sample logging configuration. The only tangible logging

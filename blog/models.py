@@ -4,6 +4,9 @@ from django.db import models
 # Python Imports
 import datetime
 
+# Project Imports
+from Django_Blog.blog.managers import EntryManager
+
 class Entry(models.Model):
     """
     An Entry is one item to be listed in the blog page.
@@ -30,4 +33,4 @@ class Entry(models.Model):
     def __unicode__(self):
         return self.name
 
-    
+    objects = EntryManager()

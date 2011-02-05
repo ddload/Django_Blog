@@ -4,12 +4,13 @@ from django.views.generic import ListView
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.template import RequestContext
+from django.contrib.auth.decorators import login_required
 
 # Project Imports
 from Django_Blog.blog.models import Entry
 from Django_Blog.blog.forms import EntryForm
 
-
+@login_required
 def blog_editor(request, id=None):
     form = EntryForm(request.POST or None,
                      instance=id and Entry.objects.get(id=id))
@@ -22,6 +23,7 @@ def blog_editor(request, id=None):
                               {'form':form},
                               context_instance=RequestContext(request))
 
+@login_required
 def blog_delete(request, id):
     entry = Entry.objects.get(id=id)
     entry.delete()

@@ -7,7 +7,7 @@ from Django_Blog.blog.models import Entry
 
 urlpatterns = patterns('',
     url(r'^$', ListView.as_view(
-                           queryset=Entry.objects.filter(published=True),
+                           queryset=Entry.objects.published(),
                            context_object_name='blog_index',
                            template_name='blog/index.html'
                            ), name='blog_index'),
