@@ -1,3 +1,4 @@
 *.py[co]
 *~
 dev.db
+.DS_STORE

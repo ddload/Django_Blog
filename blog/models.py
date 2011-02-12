@@ -21,8 +21,8 @@ class Entry(models.Model):
     def save(self, *args, **kwargs):
         if not self.id:
             self.created = datetime.datetime.now()
-            self.modified = datetime.datetime.now()
-            super(Entry, self).save(*args, **kwargs)
+        self.modified = datetime.datetime.now()
+        super(Entry, self).save(*args, **kwargs)
 
     def is_published(self):
         if self.published:

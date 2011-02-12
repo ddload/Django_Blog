@@ -4,7 +4,7 @@
 <h1>:: Lasko and His Blog Entries ::</h1>
 <hr><br/>
 {% for entry in object_list %} 
-  <p id="p4"><a href="{% url blog_view entry.id %}"><strong>{{ entry.name }}</strong></a></p>'
+  <p id="p4"><a href="{% url blog_view entry.id %}"><strong>{{ entry.name }}</strong></a></p>
 
   <div id="article_meta">by ::[<a href="#">Lasko</a>]:: -- {{ entry.created }}</div>
   <p id="p5">{{ entry.data }}<br/>

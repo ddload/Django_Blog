@@ -5,10 +5,22 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 # Project Imports
 from Django_Blog.blog.models import Entry
 from Django_Blog.blog.forms import EntryForm
+
+
+class BlogIndex(ListView):
+    context_object_name='blog_index',
+    template_name='blog/index.html'
+
+    def get_queryset(self):
+        if self.request.user.is_authenticated():
+            return Entry.objects.all()
+        else:
+            return Entry.objects.published()
 
 @login_required
 def blog_editor(request, id=None):
