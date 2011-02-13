@@ -21,20 +21,15 @@
       </div>
       <div id="menubar">
         <ul id="menu">
-          <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
           <li class="selected"><a href="{% url blog_index %}">Home</a></li>
-          <li><a href="#">Projects</a></li>
-          <li><a href="#">Contact Us</a></li>
-
-	  <li><a href="#">Home</a></li>
-	  <li><a href="#">Projects</a></li>
-	  <li><a href="#">Links</a></li>
-	  <li><a href="#">Contact</a></li> 
-      {% if user.is_authenticated %} 
-	  <li><a href="#">Logged in: {{ user.username }}</a></li> 
-	  <li><a href="{% url auth_logout %}">Log out</a></li> 
-	  <li><a href="{% url auth_password_change %}">Change pass.</a></li> 
-      {% else %} 
+          <li><a href="http://github.com/lasko">Projects</a></li>
+    	  <li><a href="#">Links</a></li>
+	  <li><a href="#">Contact</a></li>
+      {% if user.is_authenticated %}
+	  <li><a href="#">Logged in: {{ user.username }}</a></li>
+	  <li><a href="{% url auth_logout %}">Log out</a></li>
+	  <li><a href="{% url auth_password_change %}">Change pass.</a></li>
+      {% else %}
 	  <li><a href="{% url auth_login %}">Log in</a></li>
       {% endif %}
 
