@@ -1,20 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>:: Lasko and His Blog Entries ::</h1>
-<hr><br/>
 {% for entry in object_list %} 
-  <p id="p4"><a href="{% url blog_view entry.id %}"><strong>{{ entry.name }}</strong></a></p>
 
-  <div id="article_meta">by ::[<a href="#">Lasko</a>]:: -- {{ entry.created }}</div>
-  <p id="p5">{{ entry.data }}<br/>
-  {% if user.is_authenticated %}
-     -- :: [<a href="{% url blog_edit entry.pk %}"><b>Edit</b></a>] [<a href="{% url blog_delete entry.pk %}"><b>Delete</b></a>]:: --
-  {% endif %}
-  </p><hr/>
-{% endfor %}                                                                   
+        <h1>{{ entry.name }}</h1>                                                                 
+        <p>by ::[<a href="#">Lasko</a>]:: -- {{ entry.created }}</p>
 
-{% if user.is_authenticated %}
-  <strong><a href="{% url blog_add %}">Add New Entry</a></strong>
-{% endif %}
+	<p>{{ entry.data }}
+        {% if user.is_authenticated %}
+            -- :: [<a href="{% url blog_edit entry.pk %}"><b>Edit</b></a>] [<a href="{% url blog_delete entry.pk %}"><b>Delete</b></a>]:: --
+        {% endif %}
+
+        </p>
+{% endfor %}
 {% endblock %}

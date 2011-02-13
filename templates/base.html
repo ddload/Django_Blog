@@ -1,35 +1,79 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!DOCTYPE HTML>
 <html>
+
 <head>
-<title>{% block title %}Django Blog{% endblock %}</title>
-<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
-<link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/styles.css" />
+  <title>{% block title %}Django Blog{% endblock %}</title>
+  <meta name="description" content="website description" />
+  <meta name="keywords" content="django blog, Django, djangoproject, python" />
+  <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css" />
 </head>
+
 <body>
-<div id="container">
-<div id="header"><h1><a href="http://www.djangoblog.net">Django Blog</a></h1></div>
-  <div id="wrapper">
-    <div id="content">
-      {% block content %}
-      {% endblock %}
+  <div id="main">
+    <div id="header">
+      <div id="logo">
+        <div id="logo_text">
+          <!-- class="logo_colour", allows you to change the colour of the text -->
+          <h1><a href="{% url blog_index %}">Django<span class="logo_colour">Blog</span></a></h1>
+          <h2>:: nerd talk :: for nerd folk ::</h2>
+        </div>
+      </div>
+      <div id="menubar">
+        <ul id="menu">
+          <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
+          <li class="selected"><a href="{% url blog_index %}">Home</a></li>
+          <li><a href="#">Projects</a></li>
+          <li><a href="#">Contact Us</a></li>
+
+	  <li><a href="#">Home</a></li>
+	  <li><a href="#">Projects</a></li>
+	  <li><a href="#">Links</a></li>
+	  <li><a href="#">Contact</a></li> 
+      {% if user.is_authenticated %} 
+	  <li><a href="#">Logged in: {{ user.username }}</a></li> 
+	  <li><a href="{% url auth_logout %}">Log out</a></li> 
+	  <li><a href="{% url auth_password_change %}">Change pass.</a></li> 
+      {% else %} 
+	  <li><a href="{% url auth_login %}">Log in</a></li>
+      {% endif %}
+
+        </ul>
+      </div>
+    </div>
+    <div id="content_header"></div>
+    <div id="site_content">
+      <div class="sidebar">
+        <!-- insert your sidebar items here -->
+        <h3>Latest News</h3>
+        <h5>February 12th, 2011</h5>
+        <p>2011 sees the redesign of our website. Take a look around and let us know what you think.<br /><a href="#">Read more</a></p>
+
+        <h3>Useful Links</h3>
+        <ul>
+          <li><a href="http://www.djangoproject.com">Django</a></li>
+          <li><a href="http://www,python.org">Python</a></li>
+          <li><a href="http://flask.pocoo.org">Flask</a></li>
+          <li><a href="http://www.pdxpython.org">PDXPython</a></li>
+        </ul>
+        <h3>Search</h3>
+        <form method="post" action="#" id="search_form">
+          <p>
+            <input class="search" type="text" name="search_field" value="Doesn't work yet..." />
+            <input name="search" type="image" style="border: 0; margin: 0 0 -9px 5px;" src="style/search.png" alt="Search" title="Search" />
+          </p>
+        </form>
+      </div>
+      <div id="content">
+	{% block content %}
+	{% endblock %}
+      </div>
+    </div>
+    <div id="content_footer"></div>
+    <div id="footer">
+      <p><a href="index.html">Home</a> | <a href="examples.html">Examples</a> | <a href="page.html">A Page</a> | <a href="another_page.html">Another Page</a> | <a href="contact.html">Contact Us</a></p>
+      <p>Copyright &copy; shadowplay_1 | <a href="http://validator.w3.org/check?uri=referer">HTML5</a> | <a href="http://jigsaw.w3.org/css-validator/check/referer">CSS</a> | <a href="http://www.html5webtemplates.co.uk">design from HTML5webtemplates.co.uk</a></p>
     </div>
   </div>
-  <div id="navigation">
-    <p><strong>Navigation</strong></p>
-    <ul>
-      <li><a href="#">Home</a></li>
-      <li><a href="#">Projects</a></li>
-      <li><a href="#">Links</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
-  </div>
-  <div id="extra">
-    <p><strong></strong></p>
-    <p></p>
-  </div>
-  <div id="footer">
-    <p>Copyright 2011, Brandon Height (Lasko).</p>
-  </div>
-</div>
-</body>
+<div style="text-align: center; font-size: 0.75em;">Design downloaded from <a href="http://www.freewebtemplates.com/">free website templates</a>.</div></body>
 </html>

@@ -54,16 +54,20 @@ class SimpleLoadURLTest(TestCase):
                                                   'data': 'EntryData',
                                                   'published': True,
                                                  })
-        # Check that the response is 302 Redirect to blog_index.
-        self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, expected_url='/blog/')
 
-    # NOTE: IMPORTANT ---- this should be the last test (all deletes should be last)
-    """
+    def test_POST_blog_edit(self):
+        # Issue a POST request
+        response = self.client.post('/blog/edit/%d' %(self.e.id),
+                                    {
+                                        'name':'EntryRename',
+                                        'slug':'entry_slug',
+                                        'data':'EntryData',
+                                        'published': True,
+                                    })
+
     def test_POST_blog_delete(self):
         # Issue a POST request
         response = self.client.post('/blog/delete/%d' %(self.e.id))
-    """ 
-        
 
-        
+        # Check that the response is 301 Redirect to blog_index.
+        self.assertEqual(response.status_code, 301)
