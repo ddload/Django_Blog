@@ -71,3 +71,13 @@ class SimpleLoadURLTest(TestCase):
 
         # Check that the response is 301 Redirect to blog_index.
         self.assertEqual(response.status_code, 301)
+
+    def test_GET_logout(self):
+        # Issue a GET request
+        response = self.client.get('/accounts/logout/')
+
+        # Check that the response is 200 OK.
+        self.assertEqual(response.status_code, 200)
+        
+
+    
