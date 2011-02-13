@@ -124,7 +124,6 @@ INSTALLED_APPS = (
     'django.contrib.markup',
     'Django_Blog.blog',
     'registration',
-    'django_nose',
     'south',
 )
 
