@@ -124,6 +124,8 @@ INSTALLED_APPS = (
     'django.contrib.markup',
     'Django_Blog.blog',
     'registration',
+    'django_nose',
+    'south',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -150,3 +152,5 @@ LOGGING = {
 }
 
 LOGIN_REDIRECT_URL = '/blog/'
+
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
