@@ -18,19 +18,25 @@ class Entry(models.Model):
     created = models.DateTimeField(editable=False)
     modified = models.DateTimeField(editable=False)
 
+    objects = EntryManager()
+
+    def __unicode__(self):
+        return self.name
+
     def save(self, *args, **kwargs):
         if not self.id:
             self.created = datetime.datetime.now()
         self.modified = datetime.datetime.now()
         super(Entry, self).save(*args, **kwargs)
 
+    @models.permalink
+    def get_absolute_url(self):
+        return ('blog_view', [str(self.id)])
+
     def is_published(self):
         if self.published:
             return True
         else:
             return False
+        
 
-    def __unicode__(self):
-        return self.name
-
-    objects = EntryManager()
