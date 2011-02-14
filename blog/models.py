@@ -1,5 +1,6 @@
 # Django Imports
 from django.db import models
+from django.contrib.sitemaps import ping_google
 
 # Python Imports
 import datetime
@@ -28,10 +29,14 @@ class Entry(models.Model):
             self.created = datetime.datetime.now()
         self.modified = datetime.datetime.now()
         super(Entry, self).save(*args, **kwargs)
+        try:
+            ping_google()
+        except Exception:
+            pass
 
     @models.permalink
     def get_absolute_url(self):
-        return ('blog_view', [str(self.id)])
+        return ('blog_view', [str(self.slug)])
 
     def is_published(self):
         if self.published:

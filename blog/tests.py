@@ -20,7 +20,7 @@ class SimpleLoadURLTest(TestCase):
         self.client = Client()
         self.e = Entry.objects.create(
                                       name='EntryName',
-                                      slug='entry_slug',
+                                      slug='entry-slug',
                                       data='EntryData',
                                       published=True
                                      )
@@ -50,24 +50,24 @@ class SimpleLoadURLTest(TestCase):
         # Issue a POST request
         response = self.client.post('/blog/add/',{
                                                   'name': 'EntryName',
-                                                  'slug': 'entry_slug',
+                                                  'slug': 'entry-slug',
                                                   'data': 'EntryData',
                                                   'published': True,
                                                  })
 
     def test_POST_blog_edit(self):
         # Issue a POST request
-        response = self.client.post('/blog/edit/%d' %(self.e.id),
+        response = self.client.post('/blog/edit/%s' %(self.e.slug),
                                     {
                                         'name':'EntryRename',
-                                        'slug':'entry_slug',
+                                        'slug':'entry-slug',
                                         'data':'EntryData',
                                         'published': True,
                                     })
 
     def test_POST_blog_delete(self):
         # Issue a POST request
-        response = self.client.post('/blog/delete/%d' %(self.e.id))
+        response = self.client.post('/blog/delete/%s' %(self.e.slug))
 
         # Check that the response is 301 Redirect to blog_index.
         self.assertEqual(response.status_code, 301)

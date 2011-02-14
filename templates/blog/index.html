@@ -8,7 +8,7 @@
 
 	<p>{{ entry.data|render|safe }} <br/>[<a href="{{ entry.get_absolute_url }}">Read more</a>]
         {% if user.is_authenticated %}
-            -- :: [<a href="{% url blog_edit entry.pk %}"><b>Edit</b></a>] [<a href="{% url blog_delete entry.pk %}"><b>Delete</b></a>]:: --
+            -- :: [<a href="{% url blog_edit entry.slug %}"><b>Edit</b></a>] [<a href="{% url blog_delete entry.slug %}"><b>Delete</b></a>]:: --
         {% endif %}
         </p>
 {% endfor %}

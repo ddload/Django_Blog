@@ -11,12 +11,12 @@ from Django_Blog.blog.models import Entry
 urlpatterns = patterns('',
     url(r'^$',BlogIndex.as_view(), name='blog_index'),
     url(r'^add/$', blog_editor, name='blog_add'),
-    url(r'^view/(?P<pk>\d+)/$', DetailView.as_view(
+    url(r'^view/(?P<slug>[-\w]+)/$', DetailView.as_view(
                                        model=Entry,
                                        template_name='blog/view.html'
                                 ), name='blog_view'),
-    url(r'^edit/(?P<id>\d+)/$', blog_editor, name='blog_edit'),
-    url(r'^delete/(?P<pk>\d+)/$', login_required(DeleteView.as_view(
+    url(r'^edit/(?P<slug>[-\w]+)/$', blog_editor, name='blog_edit'),
+    url(r'^delete/(?P<slug>[-\w]+)/$', login_required(DeleteView.as_view(
                                          model=Entry,
                                          success_url=reverse('blog_index'))),
                                   name='blog_delete'),

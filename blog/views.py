@@ -26,9 +26,9 @@ class BlogIndex(ListView):
             return Entry.objects.published().order_by('created')
         
 @login_required
-def blog_editor(request, id=None):
+def blog_editor(request, slug=None):
     form = EntryForm(request.POST or None,
-                     instance=id and Entry.objects.get(id=id))
+                     instance=slug and Entry.objects.get(slug=slug))
     # Save new/edited entry
     if request.method == 'POST' and form.is_valid():
         form.save()
@@ -39,7 +39,7 @@ def blog_editor(request, id=None):
                               context_instance=RequestContext(request))
 
 @login_required
-def blog_delete(request, id):
-    entry = Entry.objects.get(id=id)
+def blog_delete(request, slug):
+    entry = Entry.objects.get(slug=slug)
     entry.delete()
     return HttpResponseRedirect(reverse('blog_index'))
