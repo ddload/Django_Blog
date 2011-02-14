@@ -13,6 +13,7 @@ urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
     (r'^blog/', include('Django_Blog.blog.urls')),
     (r'^accounts/', include('registration.urls')),
+    (r'^comments/', include('django.contrib.comments.urls')),
     # Utilizing the contrib sitemaps app.
     (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
     # Utilizing django-robots app. 

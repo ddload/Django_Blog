@@ -6,7 +6,7 @@
         <h1>{{ entry.name }}</h1>                                                                 
         <p>by ::[<a href="#">Lasko</a>]:: -- {{ entry.modified }}</p>
 
-	<p>{{ entry.data|render|safe }} <br/>[<a href="{{ entry.get_absolute_url }}">Read more</a>]
+	<p>{{ entry.data|render|safe }} <br/>Read More :: [<a href="{{ entry.get_absolute_url }}">{{ entry.name }}</a>]
         {% if user.is_authenticated %}
             -- :: [<a href="{% url blog_edit entry.slug %}"><b>Edit</b></a>] [<a href="{% url blog_delete entry.slug %}"><b>Delete</b></a>]:: --
         {% endif %}

@@ -123,6 +123,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.markup',
     'django.contrib.sitemaps',
+    'django.contrib.comments',
     'Django_Blog.blog',
     'registration',
     'robots',

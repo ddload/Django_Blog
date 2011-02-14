@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% get_comment_list for blog.post object_pk as comment_list %}
+{% for comment in comment_list %}
+<p>Posted by: {{ comment.user_name }} on {{ comment.submit_date }}</p>
+<p>Comment: {{ comment.comment }}</p>
+{% endfor %}
+{% endblock %}
