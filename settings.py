@@ -125,6 +125,7 @@ INSTALLED_APPS = (
     'django.contrib.sitemaps',
     'Django_Blog.blog',
     'registration',
+    'robots',
     'south',
 )
 

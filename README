@@ -4,3 +4,4 @@ Requirements:
 	* Markdown
 	* BeautifulSoup
 	* django-registration
+	* django-robots
