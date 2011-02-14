@@ -6,6 +6,7 @@ from django.core.urlresolvers import reverse
 from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.core.paginator import Paginator, InvalidPage, EmptyPage
 
 # Project Imports
 from Django_Blog.blog.models import Entry
@@ -13,15 +14,17 @@ from Django_Blog.blog.forms import EntryForm
 
 
 class BlogIndex(ListView):
-    context_object_name='blog_index',
+    context_object_name='blog_index'
     template_name='blog/index.html'
-
+    paginate_by = 10
+    paginator_class = Paginator
+    
     def get_queryset(self):
         if self.request.user.is_authenticated():
             return Entry.objects.all().order_by('created')
         else:
             return Entry.objects.published().order_by('created')
-
+        
 @login_required
 def blog_editor(request, id=None):
     form = EntryForm(request.POST or None,
