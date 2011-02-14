@@ -9,6 +9,9 @@ from django.test.client import Client
 from django.test import TestCase
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
+from django.contrib.comments.models import Comment
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.sites.models import Site
 
 from Django_Blog.blog.models import Entry
 
@@ -78,6 +81,18 @@ class SimpleLoadURLTest(TestCase):
 
         # Check that the response is 200 OK.
         self.assertEqual(response.status_code, 200)
-        
 
-    
+    def test_create_comment(self):
+        CT = ContentType.objects.get_for_model
+        
+        # Issue a POST request
+        c1 = Comment.objects.create(
+            content_type = CT(self.e),
+            object_pk = "1",
+            user_name = "Lasko",
+            user_email = "bmheight@gmail.com",
+            user_url = "http://example.com/~joe",
+            comment = "First!",
+            site = Site.objects.get_current(),
+        )
+        self.assertEqual(str(c1), "Lasko: First!...")
