@@ -156,3 +156,10 @@ LOGGING = {
 LOGIN_REDIRECT_URL = '/blog/'
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+# Django Registration Settings
+ACCOUNT_ACTIVATION_DAYS=7
+EMAIL_HOST='localhost'
+EMAIL_PORT=1023
+EMAIL_HOST_USER='username'
+EMAIL_HOST_PASSWORD='password'
