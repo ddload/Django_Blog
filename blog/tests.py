@@ -1,10 +1,3 @@
-"""
-This file demonstrates writing tests using the unittest module. These will pass
-when you run "manage.py test".
-
-Replace this with more appropriate tests for your application.
-"""
-
 from django.test.client import Client
 from django.test import TestCase
 from django.contrib.auth.models import User
@@ -15,7 +8,7 @@ from django.contrib.sites.models import Site
 
 from Django_Blog.blog.models import Entry
 
-class SimpleLoadURLTest(TestCase):
+class BlogTest(TestCase):
     def setUp(self):
         """
         Every test needs a client

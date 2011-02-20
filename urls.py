@@ -22,6 +22,7 @@ urlpatterns = patterns('',
 )
 urlpatterns += patterns('',
     (r'^accounts/profile/$', direct_to_template, {'template': 'registration/profile.html'}),
+    (r'^accounts/profile/edit/$', direct_to_template, {'template': 'registration/profile_form.html'}),
 )
                      
 urlpatterns += staticfiles_urlpatterns()
