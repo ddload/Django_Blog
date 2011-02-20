@@ -1,16 +1,18 @@
 from django.conf.urls.defaults import *
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.views.generic.simple  import direct_to_template
-
-from Django_Blog.sitemaps import BlogSitemap
+from django.views.generic.simple import redirect_to
 from django.contrib import admin
 admin.autodiscover()
+
+from Django_Blog.sitemaps import BlogSitemap
 
 sitemaps = {
     'blog': BlogSitemap,
 }
 
 urlpatterns = patterns('',
+    (r'^$', redirect_to, {'url':'/blog/'}),
     (r'^admin/', include(admin.site.urls)),
     (r'^blog/', include('Django_Blog.blog.urls')),
     (r'^accounts/', include('registration.urls')),
