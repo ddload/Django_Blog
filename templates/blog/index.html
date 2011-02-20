@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load blog_tags %}
+{% load cache %}
 {% load feeds %}
 
 {% block content %}
@@ -22,22 +23,26 @@
     <div class="navbox-body">
         <div class="side">
           <h2>:: DjangoProject Feeds ::</h2>
+	  {% cache 3600 parsed_djangoproject_feed %}
           {% parse_feed "http://www.djangoproject.com/rss/weblog/" as djangoproject_feed %}
   	  <ul>
   	    {% for entry in djangoproject_feed.entries %}
 	        <li><a href="{{ entry.link }}">{{ entry.title }}</a></li>
 	    {% endfor %}
 	  </ul>
+           {% endcache %}
 	</div>
 
 	<div class="side">
   	  <h2>:: b-list Feeds ::</h2>
+	  {% cache 3600 parsed_b_list_feed %}
 	  {% parse_feed "http://www.b-list.org/feeds/entries/" as b_list_feed %}
 	  <ul>
 	    {% for entry in b_list_feed.entries %}
 	        <li><a href="{{ entry.link }}">{{ entry.title }}</a></li>
 	    {% endfor %}
 	  </ul>
+	  {% endcache %}
 	</div>
     </div>
 </div>
