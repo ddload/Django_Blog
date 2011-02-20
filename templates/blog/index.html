@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load blog_tags %}
+{% load feeds %}
 
 {% block content %}
 {% for entry in object_list %} 
@@ -15,6 +16,31 @@
  {% if user.is_authenticated %}
     <p><a href="{% url blog_add %}">Add Entry</a></p>
  {% endif %}
+
+<div class="navbox" id="rssplug">
+    <h3>Django RSS Feeds</h3>
+    <div class="navbox-body">
+        <div class="side">
+          <h2>:: DjangoProject Feeds ::</h2>
+          {% parse_feed "http://www.djangoproject.com/rss/weblog/" as djangoproject_feed %}
+  	  <ul>
+  	    {% for entry in djangoproject_feed.entries %}
+	        <li><a href="{{ entry.link }}">{{ entry.title }}</a></li>
+	    {% endfor %}
+	  </ul>
+	</div>
+
+	<div class="side">
+  	  <h2>:: b-list Feeds ::</h2>
+	  {% parse_feed "http://www.b-list.org/feeds/entries/" as b_list_feed %}
+	  <ul>
+	    {% for entry in b_list_feed.entries %}
+	        <li><a href="{{ entry.link }}">{{ entry.title }}</a></li>
+	    {% endfor %}
+	  </ul>
+	</div>
+    </div>
+</div>
 
 <div class="pagination">
     <span class="step-links">

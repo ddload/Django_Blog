@@ -127,6 +127,7 @@ INSTALLED_APPS = (
     'Django_Blog.blog',
     'registration',
     'robots',
+    'template_utils',
     'south',
 )
 
