@@ -14,6 +14,11 @@ from Django_Blog.blog.forms import EntryForm
 
 
 class BlogIndex(ListView):
+    """
+        Is a subclass of ``ListView`` and is a class based generci view.
+        Pagination is currently setup for 10 entries per page.
+    """
+    
     context_object_name='blog_index'
     template_name='blog/index.html'
     paginate_by = 10

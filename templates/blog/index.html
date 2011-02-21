@@ -22,11 +22,11 @@
     <h3>Django RSS Feeds</h3>
     <div class="navbox-body">
         <div class="side">
-          <h2>:: DjangoProject Feeds ::</h2>
-	  {% cache 3600 parsed_djangoproject_feed %}
-          {% parse_feed "http://www.djangoproject.com/rss/weblog/" as djangoproject_feed %}
+          <h2>:: Schmichael.com Feeds ::</h2>
+	  {% cache 3600 parsed_schmichael_feed %}
+          {% parse_feed "http://blog.schmichael.com/category/technology/python/feed/" as schmichael_feed %}
   	  <ul>
-  	    {% for entry in djangoproject_feed.entries %}
+  	    {% for entry in schmichael_feed.entries %}
 	        <li><a href="{{ entry.link }}">{{ entry.title }}</a></li>
 	    {% endfor %}
 	  </ul>
