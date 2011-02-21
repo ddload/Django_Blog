@@ -1,7 +1,5 @@
 {% extends "base.html" %}
 {% load blog_tags %}
-{% load cache %}
-{% load feeds %}
 
 {% block content %}
 {% for entry in object_list %} 
@@ -17,35 +15,6 @@
  {% if user.is_authenticated %}
     <p><a href="{% url blog_add %}">Add Entry</a></p>
  {% endif %}
-
-<div class="navbox" id="rssplug">
-    <h3>Django RSS Feeds</h3>
-    <div class="navbox-body">
-        <div class="side">
-          <h2>:: Schmichael.com Feeds ::</h2>
-	  {% cache 3600 parsed_schmichael_feed %}
-          {% parse_feed "http://blog.schmichael.com/category/technology/python/feed/" as schmichael_feed %}
-  	  <ul>
-  	    {% for entry in schmichael_feed.entries %}
-	        <li><a href="{{ entry.link }}">{{ entry.title }}</a></li>
-	    {% endfor %}
-	  </ul>
-           {% endcache %}
-	</div>
-
-	<div class="side">
-  	  <h2>:: b-list Feeds ::</h2>
-	  {% cache 3600 parsed_b_list_feed %}
-	  {% parse_feed "http://www.b-list.org/feeds/entries/" as b_list_feed %}
-	  <ul>
-	    {% for entry in b_list_feed.entries %}
-	        <li><a href="{{ entry.link }}">{{ entry.title }}</a></li>
-	    {% endfor %}
-	  </ul>
-	  {% endcache %}
-	</div>
-    </div>
-</div>
 
 <div class="pagination">
     <span class="step-links">

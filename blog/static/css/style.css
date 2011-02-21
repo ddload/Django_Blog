@@ -316,4 +316,14 @@ table tr td
   color: #47433F;
   border-top: 1px solid #FFF;}
 
-div.side { width: 300px; float: left; padding:5px; }
+div.side { width: 300px; 
+           float: left; 
+           padding:5px; }
+
+div.feeds { font-size: 100%; 
+            padding: 7px 0px 5px 0px;
+	    margin: 0px 0px 12px 0px;
+	    font-weight: normal;
+	    color: #342F28; 
+	    font-family: serif;
+	    border-bottom: 1px solid #CCC6B4;} 

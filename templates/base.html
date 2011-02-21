@@ -1,4 +1,6 @@
-{% load blog_tags %}
+{% load cache %}
+{% load blog_tags %}                                                                                          
+{% load feeds %}
 <!DOCTYPE HTML>
 <html>
 
@@ -59,6 +61,29 @@
           <li><a href="http://flask.pocoo.org">Flask</a></li>
           <li><a href="http://www.pdxpython.org">PDXPython</a></li>
         </ul>
+	
+	<div class="feeds">
+        <h4>:: Schmichael Feed ::</h3>        
+	{% cache 3600 parsed_schmichael_feed %}                                                 
+	{% parse_feed "http://blog.schmichael.com/category/technology/python/feed/" as schmichael_feed %}
+        <ul>
+            {% for entry in schmichael_feed.entries %}
+              <li><a href="{{ entry.link }}">{{ entry.title }}</a></li>
+	    {% endfor %} 
+        </ul>
+	{% endcache %}
+
+        <h4>:: b-list Feeds ::</h4>        
+        {% cache 3600 parsed_b_list_feed %}
+	{% parse_feed "http://www.b-list.org/feeds/entries/" as b_list_feed %} 
+        <ul>
+            {% for entry in b_list_feed.entries %}
+              <li><a href="{{ entry.link }}">{{ entry.title }}</a></li>
+	    {% endfor %} 
+        </ul>
+	{% endcache %}
+	</div>
+
         <h3>Search</h3>
         <form method="post" action="#" id="search_form">
           <p>
