@@ -15,7 +15,9 @@ from Django_Blog.blog.forms import EntryForm
 
 class BlogIndex(ListView):
     """
-        Is a subclass of ``ListView`` and is a class based generci view.
+        Is a subclass of ``ListView`` and is a class based generic view,
+        which shows a listing of all entries (based on whether a user is
+        logged in or not).
         Pagination is currently setup for 10 entries per page.
     """
     
@@ -32,6 +34,10 @@ class BlogIndex(ListView):
         
 @login_required
 def blog_editor(request, slug=None):
+    """
+        ``ModelForm`` view that is used for adding/editing blog
+        entries.
+    """
     form = EntryForm(request.POST or None,
                      instance=slug and Entry.objects.get(slug=slug))
     # Save new/edited entry
@@ -42,9 +48,3 @@ def blog_editor(request, slug=None):
     return render_to_response('blog/editor.html',
                               {'form':form},
                               context_instance=RequestContext(request))
-
-@login_required
-def blog_delete(request, slug):
-    entry = Entry.objects.get(slug=slug)
-    entry.delete()
-    return HttpResponseRedirect(reverse('blog_index'))
