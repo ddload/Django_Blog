@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from Django_Blog.blog.utils import reverse
 from Django_Blog.blog.views import blog_editor, BlogIndex
 from Django_Blog.blog.models import Entry
+from Django_Blog.blog.feeds import LatestEntriesFeed
 
 urlpatterns = patterns('',
     url(r'^$',BlogIndex.as_view(), name='blog_index'),
@@ -20,4 +21,5 @@ urlpatterns = patterns('',
                                          model=Entry,
                                          success_url=reverse('blog_index'))),
                                   name='blog_delete'),
+    url(r'^latest/feed/$', LatestEntriesFeed()),
 )
