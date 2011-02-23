@@ -17,6 +17,7 @@ urlpatterns = patterns('',
     (r'^blog/', include('Django_Blog.blog.urls')),
     (r'^accounts/', include('registration.urls')),
     (r'^comments/', include('django.contrib.comments.urls')),
+    url(r'^links/', direct_to_template, {'template':'links.html'}, name='links'),
     # Utilizing the contrib sitemaps app.
     (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
     # Utilizing django-robots app. 

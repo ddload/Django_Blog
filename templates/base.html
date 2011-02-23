@@ -29,7 +29,7 @@
         <ul id="menu">
           <li class="selected"><a href="{% url blog_index %}">Home</a></li>
           <li><a href="http://github.com/lasko">Projects</a></li>
-    	  <li><a href="#">Links</a></li>
+    	  <li><a href="{% url links %}">Links</a></li>
 	  <li><a href="#">Contact</a></li>
       {% if user.is_authenticated %}
 	  <li><a href="#">Logged in: {{ user.username }}</a></li>
