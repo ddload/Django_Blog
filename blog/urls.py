@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 
 # Project Imports
 from Django_Blog.blog.utils import reverse
-from Django_Blog.blog.views import blog_editor, blog_delete, BlogIndex
+from Django_Blog.blog.views import blog_editor, BlogIndex
 from Django_Blog.blog.models import Entry
 
 urlpatterns = patterns('',
