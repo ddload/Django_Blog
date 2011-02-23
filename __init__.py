@@ -1,12 +1,10 @@
-from django.contrib.comments.models import Comment, FreeComment
-from django.core.mail import send_mail
-from django.dispatch import dispatcher
-from django.db.models import signals
+from django.db.models.signals import post_save
+from django.core.mail import mail_admins
+from django.contrib.comments.models import Comment
 
-def comment_notification(sender, instance):
-    subject = 'New Comment on %s' % instance.get_content_object().title
-    msg = 'Comment text:\n\n%s' % instance.comment
-    send_mail(subject, msg, 'bmheight@gmail.com', ['lasko@djangoblog.net'])
+def notify_of_comment(sender, instance, **kwargs):
+    message = 'A new comment has been posted.\n'
+    message += instance.get_as_text()
+    mail_admins('New Comment', message)
 
-dispatcher.connect(comment_notification, sender=FreeComment, signal=signals.post_save)
-dispatcher.connect(comment_notification, sender=Comment, signal=signals.post_save)
+post_save.connect(notify_of_comment, sender=Comment)
