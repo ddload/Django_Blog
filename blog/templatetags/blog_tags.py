@@ -50,7 +50,11 @@ def get_latest(parser, token):
     return LatestContentNode(bits[1], bits[2], bits[4])
 
 get_latest = register.tag(get_latest)
+                
+###########################
         
-        
-        
-
+@register.simple_tag
+def active(request, pattern):
+    if request.path.startswith(pattern):
+        return 'active'
+    return ''
