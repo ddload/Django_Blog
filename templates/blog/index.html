@@ -11,6 +11,20 @@
             -- :: [<a href="{% url blog_edit entry.slug %}"><b>Edit</b></a>] [<a href="{% url blog_delete entry.slug %}"><b>Delete</b></a>]:: --
         {% endif %}
         </p>
+
+<script type="text/javascript"><!--
+google_ad_client = "ca-pub-4224557450164384";
+/* djangoblogbanner */
+google_ad_slot = "2301257208";
+google_ad_width = 468;
+google_ad_height = 60;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+
+
 {% endfor %}
  {% if user.is_authenticated %}
     <p><a href="{% url blog_add %}">Add Entry</a></p>
