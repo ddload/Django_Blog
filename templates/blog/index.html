@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load blog_tags %}
+{% load comments %}
 
 {% block content %}
 {% for entry in object_list %} 
@@ -11,6 +12,9 @@
             -- :: [<a href="{% url blog_edit entry.slug %}"><b>Edit</b></a>] [<a href="{% url blog_delete entry.slug %}"><b>Delete</b></a>]:: --
         {% endif %}
         </p>
+
+{% get_comment_count for entry as comment_count %}
+<p>This entry has {{ comment_count }} comments.</p>
 
 <script type="text/javascript"><!--
 google_ad_client = "ca-pub-4224557450164384";

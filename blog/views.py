@@ -23,7 +23,7 @@ class BlogIndex(ListView):
     
     context_object_name='blog_index'
     template_name='blog/index.html'
-    paginate_by = 10
+    paginate_by = 3
     paginator_class = Paginator
     
     def get_queryset(self):
