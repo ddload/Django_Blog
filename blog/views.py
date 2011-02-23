@@ -67,5 +67,6 @@ def contact(request):
             return HttpResponseRedirect(reverse('blog_index'))
     else:
         form = ContactForm()
-    return render_to_response('contact.html', {'form': form})
+    return render_to_response('contact.html', {'form': form},
+                              context_instance=RequestContext(request))
                                                                             
