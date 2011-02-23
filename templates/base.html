@@ -9,8 +9,8 @@
   <meta name="description" content="website description" />
   <meta name="keywords" content="django blog, Django, djangoproject, python" />
   <meta http-equiv="content-type" content="text/html; charset=windows-1252" />
-  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css" />
-  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/pygments-colorful.css" />
+  <link rel="stylesheet" type="text/css" href="/static/css/style.css" />
+  <link rel="stylesheet" type="text/css" href="/static/css/pygments-colorful.css" />
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.js"></script>
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.js"></script>
 </head>
@@ -30,7 +30,7 @@
           <li class="selected"><a href="{% url blog_index %}">Home</a></li>
           <li><a href="http://github.com/lasko">Projects</a></li>
     	  <li><a href="{% url links %}">Links</a></li>
-	  <li><a href="#">Contact</a></li>
+	  <li><a href="{% url contact %}">Contact</a></li>
       {% if user.is_authenticated %}
 	  <li><a href="#">Logged in: {{ user.username }}</a></li>
 	  <li><a href="{% url auth_logout %}">Log out</a></li>

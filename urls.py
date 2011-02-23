@@ -6,6 +6,7 @@ from django.contrib import admin
 admin.autodiscover()
 
 from Django_Blog.sitemaps import BlogSitemap
+from Django_Blog.blog.views import contact
 
 sitemaps = {
     'blog': BlogSitemap,
@@ -18,6 +19,7 @@ urlpatterns = patterns('',
     (r'^accounts/', include('registration.urls')),
     (r'^comments/', include('django.contrib.comments.urls')),
     url(r'^links/', direct_to_template, {'template':'links.html'}, name='links'),
+    url(r'^contact/', contact, name='contact'),
     # Utilizing the contrib sitemaps app.
     (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
     # Utilizing django-robots app. 

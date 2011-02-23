@@ -7,10 +7,12 @@ from django.template import RequestContext
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
+from django.core.mail import send_mail
+from django.views.decorators.csrf import csrf_exempt
 
 # Project Imports
 from Django_Blog.blog.models import Entry
-from Django_Blog.blog.forms import EntryForm
+from Django_Blog.blog.forms import EntryForm, ContactForm
 
 
 class BlogIndex(ListView):
@@ -48,3 +50,22 @@ def blog_editor(request, slug=None):
     return render_to_response('blog/editor.html',
                               {'form':form},
                               context_instance=RequestContext(request))
+
+@csrf_exempt
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+            sender = form.cleaned_data.get('sender', 'bmheight@gmail.com')
+            send_mail(
+                'Feedback from your site, topic: %s' % subject,
+                message, sender,
+                ['lasko@djangoblog.net']
+            )
+            return HttpResponseRedirect(reverse('blog_index'))
+    else:
+        form = ContactForm()
+    return render_to_response('contact.html', {'form': form})
+                                                                            
