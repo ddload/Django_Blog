@@ -89,3 +89,18 @@ class BlogTest(TestCase):
             site = Site.objects.get_current(),
         )
         self.assertEqual(str(c1), "Lasko: First!...")
+
+    def test_GET_links(self):
+        # Issue a GET request
+        response = self.client.get('/links/')
+
+        # Check that the response is 200 OK.
+        self.assertEqual(response.status_code, 200)
+
+    def test_GET_contact(self):
+        # Issue a GET request
+        response = self.client.get('/contact/')
+
+        # Check that the response is 200 OK.
+        self.assertEqual(response.status_code, 200)
+
