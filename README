@@ -5,3 +5,4 @@ Requirements:
 	* BeautifulSoup
 	* django-registration
 	* django-robots
+	* django-template_utils
