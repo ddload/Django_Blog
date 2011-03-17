@@ -38,7 +38,7 @@ class LatestContentNode(template.Node):
         self.model = get_model(*model.split('.'))
 
     def render(self, context):
-        context[self.varname] = self.model._default_manager.all()[:self.num]
+        context[self.varname] = self.model._default_manager.all().order_by('-created')[:self.num]
         return ''
 
 def get_latest(parser, token):
