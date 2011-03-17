@@ -50,7 +50,7 @@
         <h5>February 12th, 2011</h5>
         <p>2011 sees the redesign of our website. Take a look around and let us know what you think.<br /></p>
 
-	{% get_latest blog.Entry 5 as recent_entries %}
+	{% get_latest blog.Entry 3 as recent_entries %}
 	{% for entry in recent_entries %}
 	<h5>{{ entry.modified }}</h5>
 	<p>{{ entry.data|truncatewords:10 }}<br/><a href="{{ entry.get_absolute_url }}">{{ entry.name }}</a></p>
