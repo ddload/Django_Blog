@@ -30,9 +30,9 @@ class BlogIndex(ListView):
     
     def get_queryset(self):
         if self.request.user.is_authenticated():
-            return Entry.objects.all().order_by('created')
+            return Entry.objects.all().order_by('-created')
         else:
-            return Entry.objects.published().order_by('created')
+            return Entry.objects.published().order_by('-created')
         
 @login_required
 def blog_editor(request, slug=None):
