@@ -58,3 +58,9 @@ def active(request, pattern):
     if request.path.startswith(pattern):
         return 'active'
     return ''
+
+###########################
+
+def sorted(iterable):
+    return iterable.sort()
+sorted = register.filter(sorted)
