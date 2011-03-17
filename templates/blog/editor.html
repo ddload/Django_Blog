@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 
+{% load blog_filters %}
 {% block content %}
 <form action="" method="post">{% csrf_token %}
     {% include "form_snippet.html" %}
