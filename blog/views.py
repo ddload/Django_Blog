@@ -20,7 +20,7 @@ class BlogIndex(ListView):
         Is a subclass of ``ListView`` and is a class based generic view,
         which shows a listing of all entries (based on whether a user is
         logged in or not).
-        Pagination is currently setup for 10 entries per page.
+        Pagination is currently setup for 3 entries per page.
     """
     
     context_object_name='blog_index'
